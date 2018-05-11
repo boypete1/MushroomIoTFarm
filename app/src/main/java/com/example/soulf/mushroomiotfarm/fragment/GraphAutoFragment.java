@@ -18,11 +18,7 @@ import com.example.soulf.mushroomiotfarm.MainActivity;
 import com.example.soulf.mushroomiotfarm.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-/**
- * Created by soulf on 3/2/2018.
- */
-
-public class ManualFragment extends Fragment {
+public class GraphAutoFragment extends Fragment {
 
     private String urlField1 = "https://thingspeak.com/channels/437884/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Humidity+%26Temp&type=line";
     private String urlField2 = "https://thingspeak.com/channels/437884/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=FanSw&type=line";
@@ -30,88 +26,20 @@ public class ManualFragment extends Fragment {
     private String urlField4 = "https://thingspeak.com/channels/437884/charts/5?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CCTVSw&type=line";
     private String urlField5 = "https://thingspeak.com/channels/437884/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CloudSw&type=line";
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        setHasOptionsMenu(true);
+
         //Create Toolbar
         createToolbar();
         // Create WebView
         createWebView();
-    } //Main Method
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_manual, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-//        Sign Out
-        if (item.getItemId() == R.id.itemSignOut){
-            mySignOut();
-        }
+    }//Main method
 
 
-
-//        Light
-        if (item.getItemId() == R.id.itemLight) {
-//            Do it
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.contentMainFragment, new LightFragment())
-                    .addToBackStack(null)
-                    .commit();
-            return true;
-        }
-//        Fan
-        if (item.getItemId() == R.id.itemFan) {
-//            Do it
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.contentMainFragment, new FanFragment())
-                    .addToBackStack(null)
-                    .commit();
-            return true;
-        }
-//        Cloud
-        if (item.getItemId() == R.id.itemCloud) {
-//            Do it
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.contentMainFragment, new CloudFragment())
-                    .addToBackStack(null)
-                    .commit();
-            return true;
-        }
-//        CCTV
-        if (item.getItemId() == R.id.itemCCTV) {
-//            Do it
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.contentMainFragment, new CCTVFragment())
-                    .addToBackStack(null)
-                    .commit();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void mySignOut() {
-
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signOut();
-
-//        Return to AuthenFragment
-        getActivity()
-                .getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.contentMainFragment, new AuthenFragment())
-                .commit();
-    }
 
     private void createWebView() {
 
@@ -147,22 +75,58 @@ public class ManualFragment extends Fragment {
         field5WebView.setWebViewClient(field5WebViewClient);
         field5WebView.loadUrl(urlField5);
         field5WebView.getSettings().setJavaScriptEnabled(true);
+    } //createWebView
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_graph, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+//signout
+        if (item.getItemId() == R.id.itemSignOut){
+            mySignOut();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void mySignOut() {
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+
+//        Return to AuthenFragment
+        getActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contentMainFragment, new AuthenFragment())
+                .commit();
+    }
 
 
-    }//createWebView
+
+
 
     private void createToolbar() {
+
         Toolbar toolbar = getView().findViewById(R.id.toolbarManual);
         ((MainActivity)getActivity()).setSupportActionBar(toolbar);
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Manual");
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.temp_th));
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.update_th));
+
         ((MainActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
         ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().popBackStack();
+                ((MainActivity) getActivity()).getSupportFragmentManager().popBackStack();
             }
         });
+        setHasOptionsMenu(true);
     }
 
     @Nullable

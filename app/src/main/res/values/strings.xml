@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">MushroomIoTFarm</string>
+    <string name="app_name">Mushroom IoT Farm</string>
+    <string name="temp_th">อุณหภูมิ และ ความชื้น</string>
+    <string name="update_th">ถ้าต้องการเปลี่ยนแปลง คลิก อัพเดท</string>
 </resources>

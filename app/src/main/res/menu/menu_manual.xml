@@ -26,4 +26,10 @@
         android:icon="@drawable/ic_action_cctv"
         android:title="CCTV"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/itemSignOut"
+        android:icon="@drawable/ic_action_sign_out"
+        android:title="SignOut"
+        app:showAsAction="always" />
 </menu>

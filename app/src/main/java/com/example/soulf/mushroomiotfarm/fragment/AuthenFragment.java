@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by soulf on 3/2/2018.
@@ -31,7 +32,23 @@ public class AuthenFragment extends Fragment {
 //        Login Controller
         loginController();
 
+//        Check Status
+        checkStatus();
     }  //Main Method
+
+    private void checkStatus() {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+        if (firebaseUser != null) {
+            getActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.contentMainFragment, new MainFragment())
+                    .commit();
+        }
+
+    }
 
     private void loginController() {
         Button button = getView().findViewById(R.id.btnLogin);

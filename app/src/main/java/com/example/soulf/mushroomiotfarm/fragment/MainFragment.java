@@ -25,8 +25,26 @@ public class MainFragment extends Fragment{
 //        Manual Controller
         manualController();
 
+//        Auto Controller
+        autoController();
 
     } //Main Method
+
+    private void autoController() {
+        Button button = getView().findViewById(R.id.btnAuto);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Replace Fragment
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentMainFragment, new AutoFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
 
     private void manualController() {
         Button button = getView().findViewById(R.id.btnManual);

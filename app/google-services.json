@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "148612739644-r7ehok30v998gct69ge3kj3htmnlj83p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.soulf.mushroomiotfarm",
+            "certificate_hash": "2056d01567485c4707971f0cba721fcb68a3be41"
+          }
+        },
+        {
+          "client_id": "148612739644-a8nh7tn2gbvsr8b86d6s6ebsjr8eeec1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.soulf.mushroomiotfarm",
+            "certificate_hash": "99f1de59cbbb9f0ab27aeb63c596235bc843b92a"
+          }
+        },
+        {
           "client_id": "148612739644-jse4roh0morsmi4to41a0ra67p9a85f5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
