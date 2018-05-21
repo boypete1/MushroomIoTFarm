@@ -53,7 +53,7 @@ public class LightFragment extends Fragment {
         offController();
 //   create WebView
         createWebView();
-
+//   create Toolbar
         createToolbar();
     } // Main Method
 

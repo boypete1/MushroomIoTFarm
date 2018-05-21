@@ -4,7 +4,11 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -12,7 +16,9 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.soulf.mushroomiotfarm.MainActivity;
 import com.example.soulf.mushroomiotfarm.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,9 +39,9 @@ public class CCTVFragment extends Fragment {
     private FirebaseDatabase firebaseDatabase;
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         //                Get Value From Firebase
         getValueFromFirebase();
 //      On Controller
@@ -46,9 +52,55 @@ public class CCTVFragment extends Fragment {
 
         createWebView();
 
+//        create Toolbar
+        createToolbar();
 
 
     }  //Main method
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.itemSignOut){
+            mySignOut();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void mySignOut() {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+
+//        Return to AuthenFragment
+        getActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contentMainFragment, new AuthenFragment())
+                .commit();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_graph, menu);
+    }
+
+    private void createToolbar() {
+        Toolbar toolbar = getView().findViewById(R.id.toolbarCCTV);
+        ((MainActivity)getActivity()).setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.temp_th));
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.update_th));
+
+        ((MainActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) getActivity()).getSupportFragmentManager().popBackStack();
+            }
+        });
+        setHasOptionsMenu(true);
+    }
 
 
     private void OffController() {
