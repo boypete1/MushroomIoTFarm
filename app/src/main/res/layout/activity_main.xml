@@ -7,7 +7,7 @@
     tools:context="com.example.soulf.mushroomiotfarm.MainActivity">
     <!--Wallpaper-->
     <ImageView
-        android:src="@drawable/bg7"
+        android:src="@drawable/kingg"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

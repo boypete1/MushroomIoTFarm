@@ -36,7 +36,7 @@ import java.util.Map;
 public class LightFragment extends Fragment {
     private DatabaseReference databaseReference;
     private String LightString;
-    private String urlField3 = "https://thingspeak.com/channels/437884/charts/2?average=10&bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Light&type=line";
+    private String urlField3 = "https://thingspeak.com/channels/437884/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Humidity+&type=line";
     private FirebaseDatabase firebaseDatabase;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

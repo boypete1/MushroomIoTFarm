@@ -27,7 +27,7 @@
         android:layout_height="wrap_content">
 
 
-
+w
         <!--icon-->
         <ImageView
             android:layout_gravity="center_vertical"
@@ -39,6 +39,7 @@
             android:id="@+id/editUser"
             android:inputType="textEmailAddress"
             android:hint="User :"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
