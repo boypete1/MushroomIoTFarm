@@ -22,10 +22,18 @@
             android:layout_height="match_parent">
 
             <TextView
+
+                android:text="Fan"
+                android:textColorHighlight="#ffffff"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
                 android:id="@+id/txtFan"
                 android:text="OFF"
                 android:textColorHighlight="#ffffff"
-                android:textSize="100dp"
+                android:textSize="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

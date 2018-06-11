@@ -36,7 +36,7 @@ import java.util.Map;
 public class LightFragment extends Fragment {
     private DatabaseReference databaseReference;
     private String LightString;
-    private String urlField3 = "https://thingspeak.com/channels/437884/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Humidity+&type=line";
+    private String urlField3 = "https://thingspeak.com/channels/437884/charts/6?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Light&type=line";
     private FirebaseDatabase firebaseDatabase;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -107,12 +107,12 @@ public class LightFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    updateLight("OFF");
+                    updateLight(0);
             }
         });
     }
 
-    private void updateLight(String lightString) {
+    private void updateLight(int lightString) {
         Map<String, Object> stringObjectMap = new HashMap<>();
         stringObjectMap.put("Light", lightString);
         databaseReference.updateChildren(stringObjectMap);
@@ -124,7 +124,7 @@ public class LightFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateLight("ON");
+                updateLight(1);
             }
         });
     }

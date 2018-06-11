@@ -116,12 +116,12 @@ public class FanFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateFan("OFF");
+                updateFan(0);
             }
         });
     }
 
-    private void updateFan(String FanString) {
+    private void updateFan(int FanString) {
         Map<String, Object> stringObjectMap = new HashMap<>();
         stringObjectMap.put("Fan", FanString);
         databaseReference.updateChildren(stringObjectMap);
@@ -132,7 +132,7 @@ public class FanFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateFan("ON");
+                updateFan(1);
             }
         });
     }

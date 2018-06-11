@@ -26,9 +26,9 @@ public class ManualFragment extends Fragment {
 
     private String urlField1 = "https://thingspeak.com/channels/437884/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Temp&type=line";
     private String urlField2 = "https://thingspeak.com/channels/437884/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=FanSw&type=line";
-    private String urlField3 = "https://thingspeak.com/channels/437884/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Humidity+&type=line";
+    private String urlField3 = "https://thingspeak.com/channels/437884/charts/6?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Light&type=line";
     private String urlField4 = "https://thingspeak.com/channels/437884/charts/5?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CCTVSw&type=line";
-    private String urlField5 = "https://thingspeak.com/channels/437884/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CloudSw&type=line";
+    private String urlField5 = "https://thingspeak.com/channels/437884/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=FogSw&type=line";
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

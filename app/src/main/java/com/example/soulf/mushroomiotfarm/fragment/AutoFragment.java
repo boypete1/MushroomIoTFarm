@@ -28,8 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AutoFragment extends Fragment{
-    private  String tempString, humidityString;
-    private  EditText tempEditText, humiEditText;
+    private  String tempString, humidityString, tempString1, humidityString1;
+    private  EditText tempEditText, humiEditText ,tempEditText1 ,humiEditText1;
     private ProgressDialog progressDialog;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -110,6 +110,9 @@ public class AutoFragment extends Fragment{
 
         tempString = tempEditText.getText().toString().trim();
         humidityString = humiEditText.getText().toString().trim();
+        //more
+        tempString1 = tempEditText1.getText().toString().trim();
+        humidityString1 = humiEditText1.getText().toString().trim();
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -118,8 +121,11 @@ public class AutoFragment extends Fragment{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Object> stringObjectMap = new HashMap<>();
-                stringObjectMap.put("Temp", tempString);
-                stringObjectMap.put("Humidity", humidityString);
+                stringObjectMap.put("Temp_Low", tempString);
+                stringObjectMap.put("Humidity_Low", humidityString);
+                //more
+                stringObjectMap.put("Temp_High", tempString1);
+                stringObjectMap.put("Humidity_High", humidityString1);
                 databaseReference.updateChildren(stringObjectMap);
                 progressDialog.dismiss();
                 nextToGragph();
@@ -139,8 +145,11 @@ public class AutoFragment extends Fragment{
     }
 
     private void showView() {
-        tempEditText =getView().findViewById(R.id.edtTemp);
-        humiEditText  = getView().findViewById(R.id.edtHumidity);
+        tempEditText =getView().findViewById(R.id.edtTempl);
+        humiEditText  = getView().findViewById(R.id.edtHumidityl);
+        //more
+        tempEditText1 =getView().findViewById(R.id.edtTemph);
+        humiEditText1  = getView().findViewById(R.id.edtHumidityh);
 
         FirebaseDatabase firebaseDatabase =  FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -149,11 +158,17 @@ public class AutoFragment extends Fragment{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map map = (Map) dataSnapshot.getValue();
-                tempString = String.valueOf(map.get("Temp"));
-                humidityString = String.valueOf(map.get("Humidity"));
+                tempString = String.valueOf(map.get("Temp_Low"));
+                humidityString = String.valueOf(map.get("Humidity_Low"));
+                //more
+                tempString1 = String.valueOf(map.get("Temp_High"));
+                humidityString1 = String.valueOf(map.get("Humidity_High"));
 
                 tempEditText.setText(tempString);
                 humiEditText.setText(humidityString);
+                //more
+                tempEditText1.setText(tempString1);
+                humiEditText1.setText(humidityString1);
             }
 
             @Override

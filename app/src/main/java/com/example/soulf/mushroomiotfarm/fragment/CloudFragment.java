@@ -36,7 +36,7 @@ public class CloudFragment extends Fragment {
     private DatabaseReference databaseReference;
     private String CloudString;
     private FirebaseDatabase firebaseDatabase;
-    private String urlField5 = "https://thingspeak.com/channels/437884/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CloudSw&type=line";
+    private String urlField5 = "https://thingspeak.com/channels/437884/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=FogSw&type=line";
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -116,12 +116,12 @@ public class CloudFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateCloud("OFF");
+                updateCloud(0);
             }
         });
     }
 
-    private void updateCloud(String CloudString) {
+    private void updateCloud(int CloudString) {
         Map<String, Object> stringObjectsMap = new HashMap<>();
         stringObjectsMap.put("Cloud", CloudString);
         databaseReference.updateChildren(stringObjectsMap);
@@ -132,7 +132,7 @@ public class CloudFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    updateCloud("ON");
+                    updateCloud(1);
                 }
             });
     }
