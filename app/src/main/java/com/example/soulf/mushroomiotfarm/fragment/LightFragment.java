@@ -107,12 +107,12 @@ public class LightFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    updateLight(0);
+                    updateLight("OFF");
             }
         });
     }
 
-    private void updateLight(int lightString) {
+    private void updateLight(String lightString) {
         Map<String, Object> stringObjectMap = new HashMap<>();
         stringObjectMap.put("Light", lightString);
         databaseReference.updateChildren(stringObjectMap);
@@ -124,7 +124,7 @@ public class LightFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateLight(1);
+                updateLight("ON");
             }
         });
     }
