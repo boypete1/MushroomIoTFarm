@@ -116,12 +116,12 @@ public class CloudFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateCloud("OFF");
+                updateCloud(0);
             }
         });
     }
 
-    private void updateCloud(String CloudString) {
+    private void updateCloud(int CloudString) {
         Map<String, Object> stringObjectsMap = new HashMap<>();
         stringObjectsMap.put("Fog", CloudString);
         databaseReference.updateChildren(stringObjectsMap);
@@ -132,7 +132,7 @@ public class CloudFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    updateCloud("ON");
+                    updateCloud(1);
                 }
             });
     }
